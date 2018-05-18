@@ -6,9 +6,10 @@ Feature: Import content.
     And I run `wp post generate --post_type=post --count=4`
     And I run `wp post generate --post_type=page --count=3`
     When I run `wp post list --post_type=any --format=count`
+    #Privacy policy page adds one
     Then STDOUT should be:
       """
-      7
+      8
       """
 
     When I run `wp export`
@@ -50,9 +51,10 @@ Feature: Import content.
     When I run `wp post generate --count=50`
     When I run `wp post generate --post_type=page --count=50`
     And I run `wp post list --post_type=post,page --format=count`
+    #Privacy page adds one
     Then STDOUT should be:
       """
-      100
+      101
       """
 
     When I run `wp export --dir=export-posts --post_type=post`
@@ -98,9 +100,10 @@ Feature: Import content.
     When I run `wp post generate --post_type=page --count=1`
 
     When I run `wp post list --post_type=post,page --format=count`
+    # Privacy page adds one
     Then STDOUT should be:
       """
-      2
+      3
       """
 
     When I run `wp export --dir=export --post_type=post --filename_format={site}.wordpress.{date}.{n}.xml`
